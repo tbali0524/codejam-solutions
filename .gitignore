@@ -1,2 +1,5 @@
+# git config file: exclude these directories from the git repo.
 /vendor/
 /docs/
+
+# /.tools/* is excluded via a separate .gitignore file
