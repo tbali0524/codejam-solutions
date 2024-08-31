@@ -1,6 +1,6 @@
 # CodeJam solutions in PHP by TBali
 
-![php v8.2](https://shields.io/badge/php-8.2-blue?logo=php)
+![php v8.3](https://shields.io/badge/php-8.3-blue?logo=php)
 
 * [Google CodeJam website](https://codingcompetitions.withgoogle.com/codejam)
 * My CodeJam username: `TBali`

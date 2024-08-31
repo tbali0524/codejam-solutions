@@ -15,9 +15,8 @@ function dup(string $s): string
 {
     if ($s == '0') {
         return '0';
-    } else {
-        return $s . '0';
     }
+    return $s . '0';
 }
 
 // --------------------------------------------------------------------
@@ -25,7 +24,7 @@ function neg(string $s): string
 {
     $p = 0;
     while ($p < strlen($s) && $s[$p] == '1') {
-        $p++;
+        ++$p;
     }
     if ($p == strlen($s)) {
         return '0';
@@ -33,17 +32,17 @@ function neg(string $s): string
     $ans = '';
     while ($p < strlen($s)) {
         $ans .= ($s[$p] == '0' ? '1' : '0');
-        $p++;
+        ++$p;
     }
     return $ans;
 }
 
 // --------------------------------------------------------------------
 // ---------- main program
-fscanf(STDIN, "%d", $T);
+fscanf(STDIN, '%d', $T);
 /** @var int $T */
-for ($tc = 1; $tc <= $T; $tc++) {
-    $inp = explode(" ", trim(fgets(STDIN)));
+for ($tc = 1; $tc <= $T; ++$tc) {
+    $inp = explode(' ', trim(fgets(STDIN)));
     $S = $inp[0];
     $E = $inp[1];
     // error_log("$S $E : " . dup($S) . " " . dup($E) . " : " . neg($S) . " " . neg($E));
@@ -56,7 +55,7 @@ for ($tc = 1; $tc <= $T; $tc++) {
     $ans = 0;
     while (true) {
         if ($qReadIdx >= $qWriteIdx) {
-            $ans = "IMPOSSIBLE";
+            $ans = 'IMPOSSIBLE';
             break;
         }
         $curr = $q[$qReadIdx++];
@@ -79,6 +78,6 @@ for ($tc = 1; $tc <= $T; $tc++) {
             $q[$qWriteIdx++] = [$nextBin, $currSteps + 1];
         }
     }
-    echo "Case #$tc: $ans", PHP_EOL;
+    echo "Case #{$tc}: {$ans}", PHP_EOL;
 }
 // To debug: error_log(var_export($var, true)); (equivalent to var_dump)

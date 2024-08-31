@@ -6,16 +6,16 @@ declare(strict_types=1);
 
 const DEBUG = false;
 
-fscanf(STDIN, "%d", $T);
+fscanf(STDIN, '%d', $T);
 /** @var int $T */
-for ($tc = 1; $tc <= $T; $tc++) {
-    $inputs = explode(" ", trim(fgets(STDIN)));
+for ($tc = 1; $tc <= $T; ++$tc) {
+    $inputs = explode(' ', trim(fgets(STDIN)));
     $X = intval($inputs[0]);
     $Y = intval($inputs[1]);
     $S = $inputs[2];
     // @phpstan-ignore-next-line
     if (DEBUG) {
-        error_log("==== Test case #" . strval($tc) . ": X = " . strval($X) . "; Y = " . strval($Y) . "; S = " . $S);
+        error_log('==== Test case #' . strval($tc) . ': X = ' . strval($X) . '; Y = ' . strval($Y) . '; S = ' . $S);
     }
     $ans = 0;
     $i = 0;
@@ -28,27 +28,27 @@ for ($tc = 1; $tc <= $T; $tc++) {
             if (($i > 0) and ($S[$i - 1] == 'J')) {
                 $ans += $Y;
             }
-            $i++;
+            ++$i;
             continue;
         }
         if ($S[$i] == 'J') {
             if (($i > 0) and ($S[$i - 1] == 'C')) {
                 $ans += $X;
             }
-            $i++;
+            ++$i;
             continue;
         }
         $j = $i + 1;
-        while (($j < strlen($S) and ($S[$j]) == '?')) {
-            $j++;
+        while ($j < strlen($S) and $S[$j] == '?') {
+            ++$j;
         }
-        $start = ($i > 0 ? $S[$i - 1] : " ");
-        $end = ($j < strlen($S) ? $S[$j] : " ");
+        $start = ($i > 0 ? $S[$i - 1] : ' ');
+        $end = ($j < strlen($S) ? $S[$j] : ' ');
         $div = intdiv($j - $i, 2);
         $mod = ($j - $i) % 2;
         // @phpstan-ignore-next-line
         if (DEBUG) {
-            error_log("-- current result: $ans; section: $i - $j  : 2 * $div + $mod : $start - $end");
+            error_log("-- current result: {$ans}; section: {$i} - {$j}  : 2 * {$div} + {$mod} : {$start} - {$end}");
         }
         if (($start == 'C') and ($end == ' ')) {
             $delta1 = $X * ($X < 0 ? 1 : 0);
@@ -92,11 +92,11 @@ for ($tc = 1; $tc <= $T; $tc++) {
         $ans += min($delta1, $delta2);
         // @phpstan-ignore-next-line
         if (DEBUG) {
-            error_log(".... $delta1 $delta2; updated result = $ans");
+            error_log(".... {$delta1} {$delta2}; updated result = {$ans}");
         }
         $i = $j;
     }
-    echo "Case #" . $tc . ": ";
+    echo 'Case #' . $tc . ': ';
     echo $ans, PHP_EOL;
 }
 // To debug: error_log(var_export($var, true)); (equivalent to var_dump)

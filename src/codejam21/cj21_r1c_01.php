@@ -6,15 +6,15 @@ declare(strict_types=1);
 
 const DEBUG = false;
 
-fscanf(STDIN, "%d", $T);
+fscanf(STDIN, '%d', $T);
 /** @var int $T */
-for ($tc = 1; $tc <= $T; $tc++) {
-    fscanf(STDIN, "%d %d", $N, $K);
+for ($tc = 1; $tc <= $T; ++$tc) {
+    fscanf(STDIN, '%d %d', $N, $K);
     /** @var int $N */
     /** @var int $K */
-    $s = explode(" ", trim(fgets(STDIN)));
+    $s = explode(' ', trim(fgets(STDIN)));
     $p = [];
-    for ($i = 0; $i < $N; $i++) {
+    for ($i = 0; $i < $N; ++$i) {
         $p[$i] = intval($s[$i]);
     }
     sort($p);
@@ -26,7 +26,7 @@ for ($tc = 1; $tc <= $T; $tc++) {
     if ($p[count($p) - 1] < $K) {
         $winSingle[] = $K - $p[count($p) - 1];
     }
-    for ($i = 1; $i < $N; $i++) {
+    for ($i = 1; $i < $N; ++$i) {
         $d = $p[$i] - $p[$i - 1];
         if ($d > 1) {
             $winSingle[] = 1 + intdiv($d - 2, 2);
@@ -49,6 +49,6 @@ for ($tc = 1; $tc <= $T; $tc++) {
     $ans = $best / $K;
     // error_log("  S: " . implode(" ", $winSingle));
     // error_log("  B: " . implode(" ", $winBoth));
-    echo "Case #$tc: $ans", PHP_EOL;
+    echo "Case #{$tc}: {$ans}", PHP_EOL;
 }
 // To debug: error_log(var_export($var, true)); (equivalent to var_dump)

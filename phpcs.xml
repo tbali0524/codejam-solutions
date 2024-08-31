@@ -2,13 +2,13 @@
 <!--
 phpcs configuration file.
 
-minimum version: ^3.7.0
+minimum version: ^3.10
 
 @see https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-Ruleset
 -->
 <ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="codejam-solutions">
     <description>PHP_CodeSniffer configuration</description>
-    <config name="php_version" value="80200"/>
+    <config name="php_version" value="80300"/>
     <arg name="cache" value=".tools/.phpcs.cache"/>
     <arg name="extensions" value="php"/>
     <arg name="encoding" value="utf-8"/>

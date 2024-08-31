@@ -41,25 +41,25 @@ function extendSolution(array &$L, int $N, int $C): void
         }
         array_unshift($L, 0);
     }
-    for ($i = 0; $i < count($L); $i++) {
-        $L[$i]++;
+    for ($i = 0; $i < count($L); ++$i) {
+        ++$L[$i];
     }
 }
 
 // --------------------------------------------------------------------
 // ---------- main program
-fscanf(STDIN, "%d", $T);
+fscanf(STDIN, '%d', $T);
 /** @var int $T */
-for ($tc = 1; $tc <= $T; $tc++) {
-    fscanf(STDIN, "%d %d", $N, $C);
+for ($tc = 1; $tc <= $T; ++$tc) {
+    fscanf(STDIN, '%d %d', $N, $C);
     /** @var int $N */
     /** @var int $C */
     // @phpstan-ignore-next-line
     if (DEBUG) {
-        error_log("==== Test case #" . strval($tc) . ": N = " . strval($N) . "; C = " . strval($C));
+        error_log('==== Test case #' . strval($tc) . ': N = ' . strval($N) . '; C = ' . strval($C));
     }
     $L = [];
     extendSolution($L, $N, $C);
-    echo "Case #" . $tc . ": " . (count($L) == 0 ? "IMPOSSIBLE" : implode(' ', $L)), PHP_EOL;
+    echo 'Case #' . $tc . ': ' . (count($L) == 0 ? 'IMPOSSIBLE' : implode(' ', $L)), PHP_EOL;
 }
 // To debug: error_log(var_export($var, true)); (equivalent to var_dump)

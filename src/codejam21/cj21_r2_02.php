@@ -10,7 +10,7 @@ namespace TBali\CodeJam\CodeJam21Round2Problem02;
 
 function isPrime(int $x): bool
 {
-    for ($i = 2; $i < $x; $i++) {
+    for ($i = 2; $i < $x; ++$i) {
         if ($x % $i == 0) {
             return false;
         }
@@ -48,12 +48,12 @@ function getAns(int $last, int $N): int
     return $best;
 }
 
-fscanf(STDIN, "%d", $T);
+fscanf(STDIN, '%d', $T);
 /** @var int $T */
-for ($tc = 1; $tc <= $T; $tc++) {
-    fscanf(STDIN, "%d", $N);
+for ($tc = 1; $tc <= $T; ++$tc) {
+    fscanf(STDIN, '%d', $N);
     /** @var int $N */
     $ans = getAns(1, $N);
-    echo "Case #" . $tc . ": " . $ans, PHP_EOL;
+    echo 'Case #' . $tc . ': ' . $ans, PHP_EOL;
 }
 // To debug: error_log(var_export($var, true)); (equivalent to var_dump)

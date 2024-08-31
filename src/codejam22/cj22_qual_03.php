@@ -6,34 +6,34 @@ declare(strict_types=1);
 
 const DEBUG = false;
 
-fscanf(STDIN, "%d", $T);
+fscanf(STDIN, '%d', $T);
 /** @var int $T */
-for ($tc = 1; $tc <= $T; $tc++) {
+for ($tc = 1; $tc <= $T; ++$tc) {
     // @phpstan-ignore-next-line
     if (DEBUG) {
-        error_log("==== Test case #$tc:");
+        error_log("==== Test case #{$tc}:");
     }
-    fscanf(STDIN, "%d", $N);
+    fscanf(STDIN, '%d', $N);
     /** @var int $N */
     $S = array_map('intval', explode(' ', trim(fgets(STDIN))));
     // @phpstan-ignore-next-line
     if (DEBUG) {
-        error_log("$N dice with sides: " . implode(' ', $S));
+        error_log("{$N} dice with sides: " . implode(' ', $S));
     }
     sort($S);
     $result = 1;
     $idxDice = 0;
     while (true) {
         while (($idxDice < $N) and (($S[$idxDice] ?? 0) < $result)) {
-            $idxDice++;
+            ++$idxDice;
         }
         if ($idxDice == $N) {
-            $result--;
+            --$result;
             break;
         }
-        $result++;
-        $idxDice++;
+        ++$result;
+        ++$idxDice;
     }
-    echo "Case #$tc: $result", PHP_EOL;
+    echo "Case #{$tc}: {$result}", PHP_EOL;
 }
 // To debug: error_log(var_export($var, true)); (equivalent to var_dump)

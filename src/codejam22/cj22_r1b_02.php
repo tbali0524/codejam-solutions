@@ -7,21 +7,21 @@ declare(strict_types=1);
 
 const DEBUG = false;
 
-fscanf(STDIN, "%d", $T);
+fscanf(STDIN, '%d', $T);
 /** @var int $T */
-for ($tc = 1; $tc <= $T; $tc++) {
-    fscanf(STDIN, "%d %d", $N, $P);
+for ($tc = 1; $tc <= $T; ++$tc) {
+    fscanf(STDIN, '%d %d', $N, $P);
     /** @var int $N */
     /** @var int $P */
     // @phpstan-ignore-next-line
     if (DEBUG) {
-        error_log("==== Test case #$tc: $N $P");
+        error_log("==== Test case #{$tc}: {$N} {$P}");
     }
     $X = [];
     $min = [];
     $max = [];
     $result = 0;
-    for ($i = 0; $i < $N; $i++) {
+    for ($i = 0; $i < $N; ++$i) {
         $X[$i] = array_map('intval', explode(' ', trim(fgets(STDIN))));
         sort($X[$i]);
         $min[$i] = min($X[$i]);
@@ -29,14 +29,14 @@ for ($tc = 1; $tc <= $T; $tc++) {
         // @phpstan-ignore-next-line
         if (DEBUG) {
             error_log(implode(' ', $X[$i]));
-            error_log("  min: " . $min[$i] . "; max: " . $max[$i]);
+            error_log('  min: ' . $min[$i] . '; max: ' . $max[$i]);
         }
     }
     $prevMin = 0;
     $prevMax = 0;
     $bestMin = 0;
     $bestMax = 0;
-    for ($i = 0; $i < $N; $i++) {
+    for ($i = 0; $i < $N; ++$i) {
         $min2min = abs($max[$i] - $prevMin) + abs($max[$i] - $min[$i]);
         $max2min = abs($max[$i] - $prevMax) + abs($max[$i] - $min[$i]);
         $min2max = abs($min[$i] - $prevMin) + abs($max[$i] - $min[$i]);
@@ -57,11 +57,11 @@ for ($tc = 1; $tc <= $T; $tc++) {
         $prevMax = $nextMax;
         // @phpstan-ignore-next-line
         if (DEBUG) {
-            error_log("  #$i : min2min: $min2min; max2min: $max2min; min2max: $min2max; max2max: $max2max");
-            error_log("         bestMin: $bestMin; bestMax: $bestMax");
+            error_log("  #{$i} : min2min: {$min2min}; max2min: {$max2min}; min2max: {$min2max}; max2max: {$max2max}");
+            error_log("         bestMin: {$bestMin}; bestMax: {$bestMax}");
         }
     }
     $result = min($bestMin, $bestMax);
-    echo "Case #$tc: $result", PHP_EOL;
+    echo "Case #{$tc}: {$result}", PHP_EOL;
 }
 // To debug: error_log(var_export($var, true)); (equivalent to var_dump)
